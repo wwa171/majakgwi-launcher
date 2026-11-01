@@ -445,6 +445,17 @@ const GAME_JOINED_REGEX = /\[.+\]: Sound engine started/
 const GAME_LAUNCH_REGEX = /^\[.+\]: (?:MinecraftForge .+ Initialized|ModLauncher .+ starting: .+|Loading Minecraft .+ with Fabric Loader .+)$/
 const MIN_LINGER = 5000
 
+
+/**
+ * Reset the launch area after the game process ends so the play button
+ * becomes usable again.
+ */
+function onGameExit() {
+    proc = null
+    setLaunchDetails('')
+    toggleLaunchArea(false)
+}
+
 async function dlAsync(login = true) {
 
     // Login parameter is temporary for debug purposes. Allows testing the validation/downloads without
@@ -561,7 +572,14 @@ async function dlAsync(login = true) {
         const SERVER_JOINED_REGEX = new RegExp(`\\[.+\\]: \\[CHAT\\] ${authUser.displayName} joined the game`)
 
         const onLoadComplete = () => {
-            toggleLaunchArea(false)
+            // Keep the launch area visible and show "실행중" while the game runs.
+            // Helios normally hides it here; with launchDetached the window can
+            // take several more seconds to appear, so hiding it makes the user
+            // think the launch failed.
+            setLaunchDetails(Lang.queryJS('landing.dlAsync.running'))
+            setLaunchPercentage(100)
+            launch_details.style.display = 'flex'
+            launch_content.style.display = 'none'
             if(hasRPC){
                 DiscordWrapper.updateDetails(Lang.queryJS('landing.discord.loading'))
                 proc.stdout.on('data', gameStateChange)
@@ -623,6 +641,7 @@ async function dlAsync(login = true) {
                     DiscordWrapper.shutdownRPC()
                     hasRPC = false
                     proc = null
+                    onGameExit()
                 })
             }
 
@@ -631,6 +650,10 @@ async function dlAsync(login = true) {
             loggerLaunchSuite.error('Error during launch', err)
             showLaunchFailure(Lang.queryJS('landing.dlAsync.errorDuringLaunchTitle'), Lang.queryJS('landing.dlAsync.checkConsoleForDetails'))
 
+        }
+
+        if(proc != null){
+            proc.on('close', () => { onGameExit() })
         }
     }
 

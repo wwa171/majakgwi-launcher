@@ -1,9 +1,9 @@
 {
-  "name": "helioslauncher",
-  "version": "2.2.1",
+  "name": "majakgwi-launcher",
+  "version": "1.0.1",
   "productName": "Helios Launcher",
-  "description": "Modded Minecraft Launcher",
-  "author": "Daniel Scalzi (https://github.com/dscalzi/)",
+  "description": "마작귀 서버 커스텀 런처",
+  "author": "wwa171",
   "license": "UNLICENSED",
   "homepage": "https://github.com/dscalzi/HeliosLauncher",
   "bugs": {

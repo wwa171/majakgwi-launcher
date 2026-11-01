@@ -1,20 +1,25 @@
-# Custom Language File for Launcher Customizer
+# 마작귀 서버 커스텀 런처
 
 [ejs.app]
-title = "Helios Launcher"
+title = "마작귀 런처"
 
 [ejs.landing]
-mediaGitHubURL = "https://github.com/dscalzi/HeliosLauncher"
+mediaGitHubURL = "https://github.com/wwa171/NB-Server"
 mediaXURL = "#"
 mediaInstagramURL = "#"
 mediaYouTubeURL = "#"
-mediaDiscordURL = "https://discord.gg/zNWUXdt"
+mediaDiscordURL = "#"
 
 [ejs.settings]
-sourceGithubLink = "https://github.com/dscalZi/HeliosLauncher"
-supportLink = "https://github.com/dscalZi/HeliosLauncher/issues"
+sourceGithubLink = "https://github.com/wwa171/NB-Server"
+supportLink = "https://github.com/wwa171/NB-Server/issues"
 
 [ejs.welcome]
-welcomeHeader = "WELCOME TO WESTEROSCRAFT"
-welcomeDescription = "Our mission is to recreate the universe imagined by author George RR Martin in his fantasy series, A Song of Ice and Fire.  Through the collaborative effort of thousands of community members, we have sought to create Westeros as accurately and precisely as possible within Minecraft.  The world we are creating is yours to explore.  Journey from Dorne to Castle Black, and if you aren’t afraid, beyond the Wall itself, but best not delay.  As the words of House Stark ominously warn: Winter is Coming."
-welcomeDescCTA = "You are just a few clicks away from Westeros."
+welcomeHeader = "마작귀 서버에 오신 것을 환영합니다"
+welcomeDescription = "마인크래프트 26.3 기반 커스텀 서버입니다. 런처가 모드와 설정을 자동으로 관리하므로, 설치 후 바로 플레이할 수 있습니다."
+welcomeDescCTA = "몇 번의 클릭만으로 서버에 입장합니다."
+
+[js.landing.dlAsync]
+running = "실행중.."
+readyToLaunch = "플레이"
+doneEnjoyServer = "서버에 접속했습니다. 즐거운 시간 되세요!"

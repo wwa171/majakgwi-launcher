@@ -1,8 +1,8 @@
-appId: 'helioslauncher'
-productName: 'Helios Launcher'
-artifactName: '${productName}-setup-${version}.${ext}'
+appId: 'kr.majakgwi.launcher'
+productName: 'MajakgwiLauncher'
+artifactName: '${productName}-${version}-win64.${ext}'
 
-copyright: 'Copyright © 2018-2026 Daniel Scalzi'
+copyright: 'Copyright © 2026 wwa171'
 
 asar: true
 compression: 'maximum'
@@ -16,7 +16,7 @@ extraResources:
 # Windows Configuration
 win: 
   target: 
-    - target: 'nsis'
+    - target: 'zip'
       arch: 'x64'
 
 # Windows Installer Configuration

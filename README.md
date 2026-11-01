@@ -1,211 +1,133 @@
-<p align="center"><img src="./app/assets/images/SealCircle.png" width="150px" height="150px" alt="aventium softworks"></p>
+# 마작귀 런처 (Majakgwi Launcher)
 
-<h1 align="center">Helios Launcher</h1>
+마작귀 서버(`117.110.40.130:25565`) 전용 커스텀 런처.
+[Helios Launcher](https://github.com/dscalzi/HeliosLauncher) 기반이며, 모드·설정·Java 를
+자동으로 관리한다. 플레이어는 설치 파일 하나만 받으면 되고, 모드를 직접 넣을 필요가 없다.
 
-<em><h5 align="center">(formerly Electron Launcher)</h5></em>
+- 최신 빌드: **1.0.1** (`MajakgwiLauncher-1.0.1-win64.zip`, 147,182,504 B)
+- 배포 위치: [`wwa171/NB-Server` Releases — `latest` 태그](https://github.com/wwa171/NB-Server/releases/tag/latest)
+- 대상 환경: Windows x64, Minecraft 26.3 / Fabric 0.20.1
 
-[<p align="center"><img src="https://img.shields.io/github/actions/workflow/status/dscalzi/HeliosLauncher/build.yml?branch=master&style=for-the-badge" alt="gh actions">](https://github.com/dscalzi/HeliosLauncher/actions) [<img src="https://img.shields.io/github/downloads/dscalzi/HeliosLauncher/total.svg?style=for-the-badge" alt="downloads">](https://github.com/dscalzi/HeliosLauncher/releases) <img src="https://forthebadge.com/images/badges/winter-is-coming.svg"  height="28px" alt="winter-is-coming"></p>
+---
 
-<p align="center">Join modded servers without worrying about installing Java, Forge, or other mods. We'll handle that for you.</p>
+## 1. 플레이어용
 
-![Screenshot 1](https://i.imgur.com/6o7SmH6.png)
-![Screenshot 2](https://i.imgur.com/x3B34n1.png)
+### 1.1 설치
 
-## Features
+1. Releases 에서 `MajakgwiLauncher-<버전>-win64.zip` 을 받는다.
+2. 원하는 폴더에 압축을 푼다. (설치 프로그램 없음 — 풀면 끝)
+3. `MajakgwiLauncher.exe` 를 실행한다.
 
-* 🔒 Full account management.
-  * Add multiple accounts and easily switch between them.
-  * Microsoft (OAuth 2.0) + Mojang (Yggdrasil) authentication fully supported.
-  * Credentials are never stored and transmitted directly to Mojang.
-* 📂 Efficient asset management.
-  * Receive client updates as soon as we release them.
-  * Files are validated before launch. Corrupt or incorrect files will be redownloaded.
-* ☕ **Automatic Java validation.**
-  * If you have an incompatible version of Java installed, we'll install the right one *for you*.
-  * You do not need to have Java installed to run the launcher.
-* 📰 News feed natively built into the launcher.
-* ⚙️ Intuitive settings management, including a Java control panel.
-* Supports all of our servers.
-  * Switch between server configurations with ease.
-  * View the player count of the selected server.
-* Automatic updates. That's right, the launcher updates itself.
-*  View the status of Mojang's services.
+Microsoft 계정 로그인은 Minecraft 계정으로 진행한다. 런처는 계정 정보를 저장하지 않는다.
 
-This is not an exhaustive list. Download and install the launcher to gauge all it can do!
+### 1.2 첫 실행에서 일어나는 일
 
-#### Need Help? [Check the wiki.][wiki]
+런처는 시작할 때 **`distribution.json`** 을 내려받아, 그 안에 나열된 모드·라이브러리를
+`common/modstore/` 에 받고 `instances/<id>/forgeMods.list` 를 다시 쓴다.
+즉 "모드를 넣는 것"과 "목록에 등록하는 것"이 한 번에 처리된다.
 
-#### Like the project? Leave a ⭐ star on the repository!
+첫 실행은 모드 용량 때문에 시간이 걸린다. 두 번째부터는 바뀐 것만 받는다.
 
-## Downloads
+### 1.3 접속
 
-You can download from [GitHub Releases](https://github.com/dscalzi/HeliosLauncher/releases)
+서버 선택 목록에 마작귀 서버가 기본으로 들어 있다. `플레이` 를 누르면 접속된다.
 
-#### Latest Release
+### 1.4 문제 해결
 
-[![](https://img.shields.io/github/release/dscalzi/HeliosLauncher.svg?style=flat-square)](https://github.com/dscalzi/HeliosLauncher/releases/latest)
+| 증상 | 원인 | 조치 |
+|---|---|---|
+| `Received unknown remote registry entries from server` / `Registry remapping failed!` | jar 는 있는데 `forgeMods.list` 에 없음 | 런처를 다시 실행해 목록 재생성. 손으로 목록을 고쳐도 실행 시 덮어써진다 |
+| 실행 직후 종료, Java 관련 오류 | JDK 미탑재 또는 버전 불일치 | 런처가 JDK 를 자동 배치한다. 백신이 `jdk` 폴더를 격리했는지 확인 |
+| `UnsatisfiedLinkError` / LWJGL 오류 | 네이티브 라이브러리 불일치 | 런처를 최신 버전으로 재설치. 구버전 zip 이 섞이지 않게 폴더를 새로 푼다 |
+| 서버 주소가 예전 것 | 매니페스트가 오래됨 | 런처 재시작(시작 시 `distribution.json` 을 다시 pull). 그래도 같으면 매니페스트 커밋 문제 |
 
-#### Latest Pre-Release
-[![](https://img.shields.io/github/release/dscalzi/HeliosLauncher/all.svg?style=flat-square)](https://github.com/dscalzi/HeliosLauncher/releases)
+런처는 **모드를 내장하지 않는다.** 모드 문제는 거의 항상 매니페스트나 목록 문제이지
+런처 바이너리 문제가 아니다. 그래서 대부분의 수정은 재빌드가 아니라 `distribution.json` 커밋으로 끝난다.
 
-**Supported Platforms**
+---
 
-If you download from the [Releases](https://github.com/dscalzi/HeliosLauncher/releases) tab, select the installer for your system.
+## 2. 구조
 
-| Platform | File |
-| -------- | ---- |
-| Windows x64 | `Helios-Launcher-setup-VERSION.exe` |
-| macOS x64 | `Helios-Launcher-setup-VERSION-x64.dmg` |
-| macOS arm64 | `Helios-Launcher-setup-VERSION-arm64.dmg` |
-| Linux x64 | `Helios-Launcher-setup-VERSION.AppImage` |
-
-## Console
-
-To open the console, use the following keybind.
-
-```console
-ctrl + shift + i
+```
+플레이어 PC
+  └ MajakgwiLauncher.exe
+       ├ distribution.json 내려받기 (NB-Server, main 브랜치)
+       ├ artifact.url → GitHub Release 자산 다운로드
+       ├ artifact.MD5 검증
+       └ instances/<id>/forgeMods.list 재생성 → 게임 실행
 ```
 
-Ensure that you have the console tab selected. Do not paste anything into the console unless you are 100% sure of what it will do. Pasting the wrong thing can expose sensitive information.
+`distribution.json` 이 **단일 진실 공급원**이다. 런처 화면에 옛 서버 주소가 보이면
+런처가 아니라 매니페스트가 오래된 것이다.
 
-#### Export Output to a File
+### 2.1 `distribution.json` 에서 버전을 올릴 때 같이 바꿀 것
 
-If you want to export the console output, simply right click anywhere on the console and click **Save as..**
+| 위치 | 놓치면 |
+|---|---|
+| 최상위 `version`, `servers[].version` | 런처가 업데이트로 인식하지 못함 |
+| 모듈 `id` 의 버전 suffix | 구버전으로 판단 |
+| `artifact.size`, `artifact.MD5` | 무결성 검증 실패 |
+| `artifact.url` 파일명 | 404 |
 
-![console example](https://i.imgur.com/T5e73jP.png)
-
-
-## Development
-
-This section details the setup of a basic developmentment environment.
-
-### Getting Started
-
-**System Requirements**
-
-* [Node.js][nodejs] v22
+MD5 는 **소문자 32자**로 넣는다. 서버 jar 와 클라이언트 jar 는 같은 빌드여야 한다 —
+한쪽만 올리면 레지스트리 불일치로 접속이 막힌다.
 
 ---
 
-**Clone and Install Dependencies**
+## 3. 소스 빌드 (개발자용)
 
-```console
-> git clone https://github.com/dscalzi/HeliosLauncher.git
-> cd HeliosLauncher
-> npm install
+### 3.1 준비
+
+- Node.js (`.nvmrc` 참조), npm
+- Windows x64 (electron-builder zip 타깃)
+
+```bash
+npm install
 ```
 
----
+### 3.2 마작귀 브랜딩이 들어간 파일
 
-**Launch Application**
+| 파일 | 내용 |
+|---|---|
+| `app/assets/js/distromanager.js` | `REMOTE_DISTRO_URL` — 매니페스트 주소 |
+| `app/assets/lang/_custom.toml` | 창 제목, 환영 문구, 링크. 한국어 UI |
+| `build/icon.png` | 256×256 아이콘 |
+| `electron-builder.yml` | `appId`, `productName`, zip 타깃 |
+| `package.json` | `name`, `version`, `description`, `author` |
+| `index.js` | 메인 프로세스 부트스트랩 (JDK 배치, LWJGL 네이티브 주입) |
 
-```console
-> npm start
+`index.js` 의 부트스트랩이 핵심이다. Helios 는 26.x 를 완전히 지원하지 않아
+**JDK 다운로드와 LWJGL 네이티브 처리**를 직접 고쳐야 한다. 이 부분이 없으면
+친구 PC 마다 Java 버전·네이티브 오류가 터진다.
+
+### 3.3 빌드
+
+```bash
+npm run dist
 ```
 
----
-
-**Build Installers**
-
-To build for your current platform.
-
-```console
-> npm run dist
-```
-
-Build for a specific platform.
-
-| Platform    | Command              |
-| ----------- | -------------------- |
-| Windows x64 | `npm run dist:win`   |
-| macOS       | `npm run dist:mac`   |
-| Linux x64   | `npm run dist:linux` |
-
-Builds for macOS may not work on Windows/Linux and vice-versa.
+산출물은 `dist/` 에 생긴다. zip 을 Release 자산으로 올리면 배포 끝이다.
 
 ---
 
-### Visual Studio Code
+## 4. 배포 절차
 
-All development of the launcher should be done using [Visual Studio Code][vscode].
-
-Paste the following into `.vscode/launch.json`
-
-```JSON
-{
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "name": "Debug Main Process",
-      "type": "node",
-      "request": "launch",
-      "cwd": "${workspaceFolder}",
-      "program": "${workspaceFolder}/node_modules/electron/cli.js",
-      "args" : ["."],
-      "outputCapture": "std"
-    },
-    {
-      "name": "Debug Renderer Process",
-      "type": "chrome",
-      "request": "launch",
-      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
-      "windows": {
-        "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron.cmd"
-      },
-      "runtimeArgs": [
-        "${workspaceFolder}/.",
-        "--remote-debugging-port=9222"
-      ],
-      "webRoot": "${workspaceFolder}"
-    }
-  ]
-}
-```
-
-This adds two debug configurations.
-
-#### Debug Main Process
-
-This allows you to debug Electron's [main process][mainprocess]. You can debug scripts in the [renderer process][rendererprocess] by opening the DevTools Window.
-
-#### Debug Renderer Process
-
-This allows you to debug Electron's [renderer process][rendererprocess]. This requires you to install the [Debugger for Chrome][chromedebugger] extension.
-
-Note that you **cannot** open the DevTools window while using this debug configuration. Chromium only allows one debugger, opening another will crash the program.
+1. 빌드 산출물 zip 을 Release 에 업로드
+   — 같은 이름의 자산이 이미 있으면 **먼저 삭제**해야 한다(Release 자산은 이름 중복 불가)
+2. `distribution.json` 의 `version`·모듈 `id`·`size`·`MD5`·`url` 갱신 후 커밋
+3. 런처 재시작으로 반영 확인
 
 ---
 
-### Note on Third-Party Usage
+## 5. 버전 이력
 
-Please give credit to the original author and provide a link to the original source. This is free software, please do at least this much.
-
-For instructions on setting up Microsoft Authentication, see https://github.com/dscalzi/HeliosLauncher/blob/master/docs/MicrosoftAuth.md.
-
----
-
-## Resources
-
-* [Wiki][wiki]
-* [Nebula (Create Distribution.json)][nebula]
-* [v2 Rewrite Branch (Inactive)][v2branch]
-
-The best way to contact the developers is on Discord.
-
-[![discord](https://discordapp.com/api/guilds/211524927831015424/embed.png?style=banner3)][discord]
+| 버전 | 자산 ID | 크기 | 비고 |
+|---|---|---|---|
+| 1.0.0 | `695288074` | 147,148,979 | 최초 배포. 롤백용 보존 |
+| **1.0.1** | `697449951` | 147,182,504 | 현행 |
 
 ---
 
-### See you ingame.
+## 6. 라이선스
 
-
-[nodejs]: https://nodejs.org/en/ 'Node.js'
-[vscode]: https://code.visualstudio.com/ 'Visual Studio Code'
-[mainprocess]: https://electronjs.org/docs/tutorial/application-architecture#main-and-renderer-processes 'Main Process'
-[rendererprocess]: https://electronjs.org/docs/tutorial/application-architecture#main-and-renderer-processes 'Renderer Process'
-[chromedebugger]: https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome 'Debugger for Chrome'
-[discord]: https://discord.gg/zNWUXdt 'Discord'
-[wiki]: https://github.com/dscalzi/HeliosLauncher/wiki 'wiki'
-[nebula]: https://github.com/dscalzi/Nebula 'dscalzi/Nebula'
-[v2branch]: https://github.com/dscalzi/HeliosLauncher/tree/ts-refactor 'v2 branch'
+Helios Launcher 는 MIT 라이선스다. 원본 저장소의 `LICENSE.txt` 를 함께 배포한다.
