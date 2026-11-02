@@ -4,8 +4,9 @@
 [Helios Launcher](https://github.com/dscalzi/HeliosLauncher) 기반이며, 모드·설정·Java 를
 자동으로 관리한다. 플레이어는 설치 파일 하나만 받으면 되고, 모드를 직접 넣을 필요가 없다.
 
-- 최신 빌드: **1.0.3** (`MajakgwiLauncher-1.0.3-win64.zip`, 147,182,934 B, sha256 `3195fe5a…02390a`)
-- 다운로드: [**Release v1.0.3**](https://github.com/wwa171/majakgwi-launcher/releases/tag/v1.0.3)
+- 최신 빌드: **1.0.5** — 설치본 `MajakgwiLauncher-1.0.5-setup.exe` (122,313,512 B, sha256 `d25957b2…56a5`) · 포터블 `MajakgwiLauncher-1.0.5-win64.zip` (159,993,962 B, sha256 `283243f9…7905`)
+- 다운로드: [**Release v1.0.5**](https://github.com/wwa171/majakgwi-launcher/releases/tag/v1.0.5)
+- 자동 업데이트: 1.0.5 부터 설치본은 `latest.yml` 을 통해 스스로 갱신한다. zip 포터블은 갱신 대상이 아니다.
 - 배포 위치: [`wwa171/NB-Server` Releases — `latest` 태그](https://github.com/wwa171/NB-Server/releases/tag/latest)
 - 참고: 저장소가 **공개**라 위 다운로드 링크는 GitHub 로그인 없이 받을 수 있다. 서버 접속은 화이트리스트로 관리한다.
 - 대상 환경: Windows x64, Minecraft 26.3 / Fabric 0.20.1
@@ -16,9 +17,12 @@
 
 ### 1.1 설치
 
-1. Releases 에서 `MajakgwiLauncher-<버전>-win64.zip` 을 받는다.
-2. 원하는 폴더에 압축을 푼다. (설치 프로그램 없음 — 풀면 끝)
-3. `MajakgwiLauncher.exe` 를 실행한다.
+1. Releases 에서 `MajakgwiLauncher-<버전>-setup.exe` 를 받는다. (권장 — 자동 업데이트 대상)
+2. 실행한다. 코드 서명 인증서가 없어 SmartScreen 경고가 뜨면 `추가 정보` → `실행` 을 누른다.
+3. 설치가 끝나면 바탕화면·시작 메뉴의 `MajakgwiLauncher` 를 실행한다.
+
+> 포터블을 원하면 `MajakgwiLauncher-<버전>-win64.zip` 을 풀어 exe 를 실행해도 된다. 다만 zip 경로는 자동 업데이트를 받지 않는다.
+> 1.0.3·1.0.4(zip) 사용자는 **한 번만** 설치본으로 갈아타면 그 뒤로는 자동 업데이트된다.
 
 Microsoft 계정 로그인은 Minecraft 계정으로 진행한다. 런처는 계정 정보를 저장하지 않는다.
 
@@ -126,7 +130,11 @@ npm run dist
 | 버전 | 자산 ID | 크기 | 비고 |
 |---|---|---|---|
 | 1.0.0 | `695288074` | 147,148,979 | 최초 배포. 롤백용 보존 |
-| **1.0.1** | `697449951` | 147,182,504 | 현행 |
+| 1.0.1 | `697449951` | 147,182,504 | zip |
+| 1.0.2 | `698421553` | 147,182,159 | zip |
+| 1.0.3 | `698478963` / 릴리스 `701948601` | 147,182,934 | zip |
+| 1.0.4 | 릴리스 `702252046` | 159,992,925 | 배경 1장 고정, zip |
+| **1.0.5** | setup `702311519` · zip `702312347` | 122,313,512 / 159,993,962 | **현행.** nsis 설치본 + 인앱 자동업데이트(`latest.yml`) |
 
 ---
 
