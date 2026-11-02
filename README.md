@@ -4,8 +4,10 @@
 [Helios Launcher](https://github.com/dscalzi/HeliosLauncher) 기반이며, 모드·설정·Java 를
 자동으로 관리한다. 플레이어는 설치 파일 하나만 받으면 되고, 모드를 직접 넣을 필요가 없다.
 
-- 최신 빌드: **1.0.1** (`MajakgwiLauncher-1.0.1-win64.zip`, 147,182,504 B)
+- 최신 빌드: **1.0.3** (`MajakgwiLauncher-1.0.3-win64.zip`, 147,182,934 B, sha256 `3195fe5a…02390a`)
+- 다운로드: [**Release v1.0.3**](https://github.com/wwa171/majakgwi-launcher/releases/tag/v1.0.3)
 - 배포 위치: [`wwa171/NB-Server` Releases — `latest` 태그](https://github.com/wwa171/NB-Server/releases/tag/latest)
+- 참고: 저장소가 현재 **비공개**라 위 다운로드 링크는 GitHub 로그인 후 열린다. 플레이어 배포에는 공개 전환 또는 별도 공개 배포 저장소가 필요하다.
 - 대상 환경: Windows x64, Minecraft 26.3 / Fabric 0.20.1
 
 ---
