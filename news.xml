@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>마작귀 서버 변경내역</title>
+    <link>https://github.com/wwa171/majakgwi-launcher</link>
+    <description>마작귀 서버 모드·시스템 변경 소식</description>
+    <language>ko</language>
+    <lastBuildDate>Sun, 02 Nov 2026 15:00:00 +0000</lastBuildDate>
+
+    <item>
+      <title>의뢰판 1.2.10 — 창 탭·툴팁 정리</title>
+      <description>의뢰판 창에 탭을 추가하고 설치 툴팁을 다듬었습니다. 크리에이티브 탭에서 의뢰판을 바로 꺼낼 수 있습니다.</description>
+      <pubDate>Sun, 02 Nov 2026 14:51:00 +0000</pubDate>
+      <guid>majakgwi-npc-1.2.10</guid>
+    </item>
+
+    <item>
+      <title>구역 지팡이 1.7.0 — /region wand</title>
+      <description>지팡이로 블록을 조준해 구역 모서리를 지정할 수 있습니다. /region create 로 구역을 만드세요.</description>
+      <pubDate>Sun, 02 Nov 2026 12:21:00 +0000</pubDate>
+      <guid>majakgwi-worldedit-1.7.0</guid>
+    </item>
+
+    <item>
+      <title>제초 1.0.7 — 수확물은 재료 전용</title>
+      <description>독초·약초·잡초 수확물은 땅에 설치되지 않습니다. 조합 재료로만 쓰입니다.</description>
+      <pubDate>Sun, 02 Nov 2026 01:10:00 +0000</pubDate>
+      <guid>majakgwi-flora-1.0.7</guid>
+    </item>
+
+    <item>
+      <title>슬라임 5종 1.1.5 — 단차 이동 개선</title>
+      <description>들판·꽃·물웅덩이·불씨·그늘 슬라임이 한 칸 단차를 더 자연스럽게 넘습니다.</description>
+      <pubDate>Sun, 02 Nov 2026 00:53:00 +0000</pubDate>
+      <guid>majakgwi-bestiary-1.1.5</guid>
+    </item>
+
+    <item>
+      <title>런처 1.0.3 — 로그인 없이 다운로드</title>
+      <description>런처 저장소를 공개했습니다. 모드 갱신이 배포 직후 바로 반영됩니다.</description>
+      <pubDate>Sun, 02 Nov 2026 13:45:00 +0000</pubDate>
+      <guid>majakgwi-launcher-1.0.3</guid>
+    </item>
+  </channel>
+</rss>
