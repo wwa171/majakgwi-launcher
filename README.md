@@ -1,6 +1,6 @@
 # 마작귀 런처 (Majakgwi Launcher)
 
-마작귀 서버(`117.110.40.130:25565`) 전용 커스텀 런처.
+마작귀 서버 전용 커스텀 런처.
 [Helios Launcher](https://github.com/dscalzi/HeliosLauncher) 기반이며, 모드·설정·Java 를
 자동으로 관리한다. 플레이어는 설치 파일 하나만 받으면 되고, 모드를 직접 넣을 필요가 없다.
 
